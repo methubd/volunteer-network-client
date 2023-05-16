@@ -4,6 +4,9 @@ import Register from "../components/Register/Register";
 import Login from "../components/Login/Login";
 import Dashboard from "../Layouts/Dashboard";
 import Home from "../components/Home/Home";
+import EventDetails from "../components/Home/EventDetails";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Bookings from "../components/Bookings/Bookings";
 
 const router = createBrowserRouter([
 
@@ -15,6 +18,15 @@ const router = createBrowserRouter([
           path: '/',
           element: <Home></Home>,
           loader: () => fetch('http://localhost:5000/events')
+        },
+        {
+          path: '/event-details/:id',
+          element: <EventDetails></EventDetails>,
+          loader: ({params}) => fetch(`http://localhost:5000/events/${params.id}`)
+        },
+        {
+          path: '/bookings',
+          element: <Bookings></Bookings>
         }
       ]
     },
@@ -28,7 +40,7 @@ const router = createBrowserRouter([
     },
     {
       path: '/addEvent',
-      element: <Dashboard></Dashboard>,
+      element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     },
    
   ]);

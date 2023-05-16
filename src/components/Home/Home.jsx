@@ -14,7 +14,7 @@ const Home = () => {
                     <input className='cursor-pointer px-5 text-base bg-blue-500 text-white py-2' type="submit" value='Search' />
                 </form>
             </div>
-            <div>
+            <div className='grid md:grid-cols-4 gap-4 mt-10'>
                 {
                     events.map(event => <Events
                     key={event._id}
